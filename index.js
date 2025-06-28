@@ -19,7 +19,13 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+    origin: [
+      process.env.FRONTEND_URL || 'http://localhost:3000',
+      'http://localhost:3001',
+      'https://qonvoo.vercel.app',
+      'https://qonvoo-frontend.vercel.app',
+      'https://qonvoo-frontend.onrender.com'
+    ],
     methods: ['GET', 'POST'],
     credentials: true,
   },
@@ -39,7 +45,13 @@ app.use(helmet({
   },
 }));
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: [
+    process.env.FRONTEND_URL || 'http://localhost:3000',
+    'http://localhost:3001',
+    'https://qonvoo.vercel.app',
+    'https://qonvoo-frontend.vercel.app',
+    'https://qonvoo-frontend.onrender.com'
+  ],
   credentials: true,
 }));
 app.use(express.json({ limit: '10mb' }));
